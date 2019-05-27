@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+                <main class="container p-5">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Name</th>
+                                <th>Shares</th>
+                                <th>Price</th>
+                                <th>TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan= "4" ></td><td> {{ buys[-1]['sum(total) + cash'] }} </td>
+                            </tr>
+                        </tfoot>
+                            <tbody>
+                                {% for trans in buys %}
+                                    {% if trans["shares"] %}
+
+                                <tr>
+                                    <td>{{ trans["symbol"] }}</td>
+                                    <td>{{ trans["name"] }}</td>
+                                    <td>{{ trans["shares"] }}</td>
+                                    <td>{{ trans["price"] }}</td>
+                                    <td>{{ trans["total"] }}</td>
+                                </tr>
+                                    {% endif %}
+                                {% endfor %}
+
+                                <tr>
+                                <td colspan="4">CASH</td> <td> {{ buys[0]["cash"] }}</td>
+                                </tr>
+
+                            </tbody>
+
+                    </table>
+
+                </main>
+
+{% endblock %}
